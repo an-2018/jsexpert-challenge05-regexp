@@ -98,24 +98,20 @@ class TextProcessorFluentAPI {
             const authorsExp = evaluateRegex(/(^.+?)\s.+\s?\s(.+)$/mg)
             const formatAuthors = (prop) => {
                 return prop.replace(authorsExp, (fullMatch, group1, group2, index) => {
-                    console.log(`Autores  fullmacth:${fullMatch}  group1:${group1} group2: ${group2} index: ${index}`)
-                    // return `${group1} ${group2}`
+                    // console.log(`Autores  fullmacth:${fullMatch}  group1:${group1} group2: ${group2} index: ${index}`)
+                    return `${group1} ${group2}`
                 })
             }
             const formatAnoNumero = (prop) => {
                 return prop.replace(authorsExp, (fullMatch, group1, group2, index) => {
-                    console.log(`Ano Number  fullmacth:${fullMatch}  group1:${group1} group2: ${group2} index: ${index}`)
-                    const result = group2.split('/')
-                    console.log(result)
-                    return [...result]
+                    // console.log(`Ano Number  fullmacth:${fullMatch}  group1:${group1} group2: ${group2} index: ${index}`)
+                    return group2
                 })
             }
             const { link, titulo, autor } = item
-            const [numero, ano] = formatAnoNumero(titulo)//titulo.match(numAnoReg)[0].split('/')
-            console.log([numero, ano])
+            const [numero, ano] = formatAnoNumero(titulo).split("/") //titulo.match(numAnoReg)[0].split('/')
             const [id] = link.match(linkReg)
-            const autores = formatAuthors(autor)//authorsExp.exec(autor).groups
-            //const extratecAutor = [autores.name, autores.lastname].join(" ")
+            const autores = formatAuthors(autor) //authorsExp.exec(autor).groups
 
             item = {
                 id,
