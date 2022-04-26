@@ -10,6 +10,6 @@ const TextProcessorFacade = require('./textProcessorFacade');
         const dataBuffer = await readFile(join(__dirname, "./../docs/projeto-de-lei.csv"))
         const instance = new TextProcessorFacade(dataBuffer.toString())
         const projects = instance.getProjectFromCSV()
-        console.log(projects)
+        console.log(JSON.stringify(projects.slice(0, 10)))
     }
 )()

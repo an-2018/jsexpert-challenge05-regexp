@@ -109,7 +109,7 @@ Projeto de lei 545/2016;http://www.al.sp.gov.br/propositura?id=1322832;Roberto M
         ],
         },
      */
-    it.only("#ExtractContentInfo - Extract additional informations in each field of the body", () => {
+    it("#ExtractContentInfo - Extract additional informations in each field of the body", () => {
         const content = {
             headers: "título;link;autor;etapa;ementa;indexadoresnorma;",
             body: [
