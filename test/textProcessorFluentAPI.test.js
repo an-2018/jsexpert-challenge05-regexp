@@ -49,13 +49,24 @@ Projeto de lei 545/2016;http://www.al.sp.gov.br/propositura?id=1322832;Roberto M
     it("#ExtractContent - Extract additional informations in each field of the body", () => {
         const content = {
             headers: "título;link;autor;etapa;ementa;indexadoresnorma;",
-            body: `Projeto de lei 584/2016;http://www.al.sp.gov.br/propositura?id=1322563;Jorge Wilson Xerife do Consumidor;PAUTA;Dispõe sobre a inclusão de cláusula nos contratos de adesão aos serviços de telefonia fixa, de telefonia móvel e de banda larga móvel, e dá outras providências.;CONTRATO, OBRIGATORIEDADE, CLÁUSULA, SERVIÇO, TELEFONIA MÓVEL, TELEFONIA FIXA, PRAZO, INCLUSÃO, RESCISÃO CONTRATUAL, LIBERAÇÃO;`
+            body: `Projeto de lei 584/2016;http://www.al.sp.gov.br/propositura?id=1322563;Jorge Wilson Xerife do Consumidor;PAUTA;Dispõe sobre a inclusão de cláusula nos contratos de adesão aos serviços de telefonia fixa, de telefonia móvel e de banda larga móvel, e dá outras providências.;CONTRATO, OBRIGATORIEDADE, CLÁUSULA, SERVIÇO, TELEFONIA MÓVEL, TELEFONIA FIXA, PRAZO, INCLUSÃO, RESCISÃO CONTRATUAL, LIBERAÇÃO;
+            Projeto de lei 584/2016;http://www.al.sp.gov.br/propositura?id=1322563;Jorge Wilson Xerife do Consumidor;PAUTA;Dispõe sobre a inclusão de cláusula nos contratos de adesão aos serviços de telefonia fixa, de telefonia móvel e de banda larga móvel, e dá outras providências.;CONTRATO, OBRIGATORIEDADE, CLÁUSULA, SERVIÇO, TELEFONIA MÓVEL, TELEFONIA FIXA, PRAZO, INCLUSÃO, RESCISÃO CONTRATUAL, LIBERAÇÃO;`
         }
         const processor = new TextProcessorFluentAPI(content)
         const result = processor.extractBodyContent().build()
         const expected = {
             headers: "título;link;autor;etapa;ementa;indexadoresnorma;",
             body: [
+                {
+                    titulo: 'Projeto de lei 584/2016',
+                    link: 'http://www.al.sp.gov.br/propositura?id=1322563',
+                    autor: 'Jorge Wilson Xerife do Consumidor',
+                    etapa: 'PAUTA',
+                    ementa:
+                        'Dispõe sobre a inclusão de cláusula nos contratos de adesão aos serviços de telefonia fixa, de telefonia móvel e de banda larga móvel, e dá outras providências.',
+                    indexadoresnorma:
+                        'CONTRATO, OBRIGATORIEDADE, CLÁUSULA, SERVIÇO, TELEFONIA MÓVEL, TELEFONIA FIXA, PRAZO, INCLUSÃO, RESCISÃO CONTRATUAL, LIBERAÇÃO',
+                },
                 {
                     titulo: 'Projeto de lei 584/2016',
                     link: 'http://www.al.sp.gov.br/propositura?id=1322563',
@@ -98,10 +109,20 @@ Projeto de lei 545/2016;http://www.al.sp.gov.br/propositura?id=1322832;Roberto M
         ],
         },
      */
-    it.only("#ExtractContentInfo - Extract additional informations in each field of the body", () => {
+    it("#ExtractContentInfo - Extract additional informations in each field of the body", () => {
         const content = {
             headers: "título;link;autor;etapa;ementa;indexadoresnorma;",
             body: [
+                {
+                    titulo: 'Projeto de lei 584/2016',
+                    link: 'http://www.al.sp.gov.br/propositura?id=1322563',
+                    autor: 'Jorge Wilson Xerife do Consumidor',
+                    etapa: 'PAUTA',
+                    ementa:
+                        'Dispõe sobre a inclusão de cláusula nos contratos de adesão aos serviços de telefonia fixa, de telefonia móvel e de banda larga móvel, e dá outras providências.',
+                    indexadoresnorma:
+                        'CONTRATO, OBRIGATORIEDADE, CLÁUSULA, SERVIÇO, TELEFONIA MÓVEL, TELEFONIA FIXA, PRAZO, INCLUSÃO, RESCISÃO CONTRATUAL, LIBERAÇÃO',
+                },
                 {
                     titulo: 'Projeto de lei 584/2016',
                     link: 'http://www.al.sp.gov.br/propositura?id=1322563',
@@ -141,6 +162,29 @@ Projeto de lei 545/2016;http://www.al.sp.gov.br/propositura?id=1322832;Roberto M
                         'RESCISÃO CONTRATUAL',
                         'LIBERAÇÃO',
                     ],
+                },
+                {
+                    id: '1322563',
+                    numero: '584',
+                    ano: '2016',
+                    autores: [
+                        {
+                            nome: 'Jorge Consumidor',
+                        },
+                    ],
+                    url: 'http://www.al.sp.gov.br/propositura?id=1322563',
+                    indexadores: [
+                        'CONTRATO',
+                        'OBRIGATORIEDADE',
+                        'CLÁUSULA',
+                        'SERVIÇO',
+                        'TELEFONIA MÓVEL',
+                        'TELEFONIA FIXA',
+                        'PRAZO',
+                        'INCLUSÃO',
+                        'RESCISÃO CONTRATUAL',
+                        'LIBERAÇÃO',
+                    ],
                 }
             ]
         }
@@ -150,10 +194,107 @@ Projeto de lei 545/2016;http://www.al.sp.gov.br/propositura?id=1322832;Roberto M
      * Step 4 Create an instance of Project from the raw objects in #content
      */
     it("#Create Create an instance of Project from the raw objects in content", () => {
-        const content = {}
+        const content = {
+            headers: "título;link;autor;etapa;ementa;indexadoresnorma;",
+            body: [
+                {
+                    id: '1322563',
+                    numero: '584',
+                    ano: '2016',
+                    autores: [
+                        {
+                            nome: 'Jorge Consumidor',
+                        },
+                    ],
+                    url: 'http://www.al.sp.gov.br/propositura?id=1322563',
+                    indexadores: [
+                        'CONTRATO',
+                        'OBRIGATORIEDADE',
+                        'CLÁUSULA',
+                        'SERVIÇO',
+                        'TELEFONIA MÓVEL',
+                        'TELEFONIA FIXA',
+                        'PRAZO',
+                        'INCLUSÃO',
+                        'RESCISÃO CONTRATUAL',
+                        'LIBERAÇÃO',
+                    ],
+                },
+                {
+                    id: '1322563',
+                    numero: '584',
+                    ano: '2016',
+                    autores: [
+                        {
+                            nome: 'Jorge Consumidor',
+                        },
+                    ],
+                    url: 'http://www.al.sp.gov.br/propositura?id=1322563',
+                    indexadores: [
+                        'CONTRATO',
+                        'OBRIGATORIEDADE',
+                        'CLÁUSULA',
+                        'SERVIÇO',
+                        'TELEFONIA MÓVEL',
+                        'TELEFONIA FIXA',
+                        'PRAZO',
+                        'INCLUSÃO',
+                        'RESCISÃO CONTRATUAL',
+                        'LIBERAÇÃO',
+                    ],
+                }
+            ]
+        }
         const processor = new TextProcessorFluentAPI(content)
         const result = processor.createProjectFromRawData().build()
-        const expected = new Project(content)
+        const expected = [
+            new Project({
+                id: '1322563',
+                numero: '584',
+                ano: '2016',
+                autores: [
+                    {
+                        nome: 'Jorge Consumidor',
+                    },
+                ],
+                url: 'http://www.al.sp.gov.br/propositura?id=1322563',
+                indexadores: [
+                    'CONTRATO',
+                    'OBRIGATORIEDADE',
+                    'CLÁUSULA',
+                    'SERVIÇO',
+                    'TELEFONIA MÓVEL',
+                    'TELEFONIA FIXA',
+                    'PRAZO',
+                    'INCLUSÃO',
+                    'RESCISÃO CONTRATUAL',
+                    'LIBERAÇÃO',
+                ],
+            }),
+            new Project({
+                id: '1322563',
+                numero: '584',
+                ano: '2016',
+                autores: [
+                    {
+                        nome: 'Jorge Consumidor',
+                    },
+                ],
+                url: 'http://www.al.sp.gov.br/propositura?id=1322563',
+                indexadores: [
+                    'CONTRATO',
+                    'OBRIGATORIEDADE',
+                    'CLÁUSULA',
+                    'SERVIÇO',
+                    'TELEFONIA MÓVEL',
+                    'TELEFONIA FIXA',
+                    'PRAZO',
+                    'INCLUSÃO',
+                    'RESCISÃO CONTRATUAL',
+                    'LIBERAÇÃO',
+                ],
+            })
+        ]
         expect(result).to.be.deep.equal(expected)
     })
 })

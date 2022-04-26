@@ -3,10 +3,13 @@
 'use strict'
 const { readFile } = require('fs/promises');
 const { join } = require('path');
+const TextProcessorFacade = require('./textProcessorFacade');
 
 (
     async () => {
         const dataBuffer = await readFile(join(__dirname, "./../docs/projeto-de-lei.csv"))
-        console.log(dataBuffer.toString())
+        const instance = new TextProcessorFacade(dataBuffer.toString())
+        const projects = instance.getProjectFromCSV()
+        console.log(projects)
     }
 )()
